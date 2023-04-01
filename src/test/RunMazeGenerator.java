@@ -6,7 +6,7 @@ public class RunMazeGenerator {
 //        testMazeGenerator(new SimpleMazeGenerator());
 //        testMazeGenerator(new MyMazeGenerator());
         AMazeGenerator mazaG = new SimpleMazeGenerator();
-        long time = mazaG.measureAlgorithmTimeMillis(20, 20);
+        long time = mazaG.measureAlgorithmTimeMillis(1000, 1000);
         System.out.print(time);
     }
     private static void testMazeGenerator(IMazeGenerator mazeGenerator) {

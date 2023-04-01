@@ -32,6 +32,9 @@ public class Maze {
         return startPos;
     }
 
+    public boolean isEmptyCell(int row,int col){
+        return this.mazeTable[row][col] == 0;
+    }
     public Position getGoalPosition()
     {
         return goalPos;

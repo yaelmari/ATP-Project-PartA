@@ -7,7 +7,6 @@ public abstract class AMazeGenerator implements IMazeGenerator {
         Maze maze;
         startTime = System.currentTimeMillis();
         maze = this.generate(nRows, nColumns);
-        maze.print();
         endTime = System.currentTimeMillis();
         return endTime - startTime;
     }

@@ -2,8 +2,8 @@ package algorithms.mazeGenerators;
 
 public class Maze {
     private int[][] mazeTable;
-    private final Position startPos;
-    private final Position goalPos;
+    private Position startPos;
+    private Position goalPos;
 
     public Maze(int nLines, int nColumns, Position startPos, Position goalPos)
     {

@@ -21,6 +21,7 @@ public class Position {
     @Override
     public String toString()
     {
-        return "(" + String.valueOf(this.rowIndex) + ", " + String.valueOf(this.columnIndex) + ")";
+        // format "{row,column}"
+        return "{" + String.valueOf(this.rowIndex) + "," + String.valueOf(this.columnIndex) + "}";
     }
 }

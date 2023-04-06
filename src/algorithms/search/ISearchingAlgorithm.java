@@ -8,5 +8,5 @@ public interface ISearchingAlgorithm {
 
     Solution solve(ISearchable domain);
 
-    void search();
+//    void search();
 }

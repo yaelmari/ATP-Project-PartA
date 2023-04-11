@@ -7,6 +7,6 @@ public interface ISearchable {
     public AState getStartState();
 
 
-    public AState getExit();
+    public AState getGoalState();
 }
 

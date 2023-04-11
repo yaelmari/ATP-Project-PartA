@@ -10,7 +10,7 @@ public class BestFirstSearch extends ASearchingAlgorithm{
 
     @Override
     public String getName() {
-        return null;
+        return "Best";
     }
 
     @Override

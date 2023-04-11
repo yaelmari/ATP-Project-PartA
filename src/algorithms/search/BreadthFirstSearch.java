@@ -10,7 +10,7 @@ public class BreadthFirstSearch implements ISearchingAlgorithm{
 
     @Override
     public String getName() {
-        return null;
+        return "BFS";
     }
 
     @Override
@@ -30,7 +30,7 @@ public class BreadthFirstSearch implements ISearchingAlgorithm{
             }
         }
         Solution solution = new Solution();
-        checked = domain.getExit();
+        checked = domain.getGoalState();
         while(checked != null){
             solution.addToStart(checked);
             checked = parents.get(checked.toString());

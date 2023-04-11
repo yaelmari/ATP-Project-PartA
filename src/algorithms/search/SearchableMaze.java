@@ -7,12 +7,11 @@ import java.util.ArrayList;
 
 public class SearchableMaze implements ISearchable{
     private AState startState;
-    private AState exit;
+    private AState goalState;
     public SearchableMaze(Maze maze){
         Position startPos = maze.getStartPosition();
         AState[][] allStates = new AState[maze.getNRows()][maze.getNColumns()];
         buildAdjacencyList(maze, allStates);
-        this.exit = new MazeState(maze.getGoalPosition().getRowIndex(),maze.getGoalPosition().getColumnIndex());
     }
 
     @Override
@@ -21,8 +20,8 @@ public class SearchableMaze implements ISearchable{
     }
 
     @Override
-    public AState getExit() {
-        return exit;
+    public AState getGoalState() {
+        return goalState;
     }
 
     private void buildAdjacencyList(Maze maze, AState[][] allStates) {
@@ -47,6 +46,7 @@ public class SearchableMaze implements ISearchable{
             }
         }
         this.startState = allStates[0][0];
+        this.goalState = allStates[maze.getGoalPosition().getRowIndex()][maze.getGoalPosition().getColumnIndex()];
     }
 
     private void updateNeighbors(AState[][] allStates, int statesRow, int statesCol)

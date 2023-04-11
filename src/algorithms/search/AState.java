@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public abstract class AState {
-    // need to create 2 string function
     protected ArrayList<AState> neighbors;
 
     public void addNeighbor(AState state)
@@ -24,8 +23,4 @@ public abstract class AState {
     {
         return neighbors.size();
     }
-
-
-
-
 }

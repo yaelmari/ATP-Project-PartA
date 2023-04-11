@@ -17,4 +17,8 @@ public class MazeState extends AState{
         {
                 return pos;
         }
+        @Override
+        public String toString(){
+                return this.pos.toString();
+        }
 }

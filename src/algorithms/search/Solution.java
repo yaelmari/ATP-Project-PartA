@@ -8,10 +8,15 @@ public class Solution {
         return sol;
     }
 
+    public Solution() {
+        this.sol = new ArrayList<>();
+    }
+
     public void addToEnd(AState state)
     {
         this.sol.add(state);
     }
+    public void addToStart(AState state){ this.sol.add(0,state);}
 
     public AState removeByIndex(int index)
     {
@@ -26,5 +31,9 @@ public class Solution {
     public int getSize()
     {
         return sol.size();
+    }
+
+    public AState getFirst(){
+        return this.sol.get(0);
     }
 }

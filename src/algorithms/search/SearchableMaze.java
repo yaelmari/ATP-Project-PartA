@@ -7,14 +7,22 @@ import java.util.ArrayList;
 
 public class SearchableMaze implements ISearchable{
     private AState startState;
+    private AState exit;
     public SearchableMaze(Maze maze){
         Position startPos = maze.getStartPosition();
-        AState[][] allStates = new AState[startPos.getRowIndex()][startPos.getColumnIndex()];
+        AState[][] allStates = new AState[maze.getNRows()][maze.getNColumns()];
         buildAdjacencyList(maze, allStates);
+        this.exit = new MazeState(maze.getGoalPosition().getRowIndex(),maze.getGoalPosition().getColumnIndex());
     }
 
+    @Override
     public AState getStartState() {
         return startState;
+    }
+
+    @Override
+    public AState getExit() {
+        return exit;
     }
 
     private void buildAdjacencyList(Maze maze, AState[][] allStates) {
@@ -65,7 +73,7 @@ public class SearchableMaze implements ISearchable{
                 }
 
                 // Check if the neighbor isn't a wall
-                if(allStates[row + statesRow][col + statesCol] != null)
+                if(allStates[row + statesRow][col + statesCol] != null && allStates[statesRow][statesCol] != null)
                 {
                     allStates[statesRow][statesCol].addNeighbor(allStates[row + statesRow][col + statesCol]);
                 }

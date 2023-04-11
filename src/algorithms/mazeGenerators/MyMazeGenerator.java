@@ -13,7 +13,7 @@ public class MyMazeGenerator extends AMazeGenerator{
         Position startPos = new Position(0, 0);
         Position goalPos = new Position(nRows - 1, nColumns - 1);
         this.maze = new Maze(nRows, nColumns, startPos, goalPos);
-        int nRowsVisitedArr = nRows / 2, nColsVisitedArr = nColumns / 2;
+        int nRowsVisitedArr = nRows / 2, nColsVisitedArr = nColumns / 2 ;
 
 
         resetDFSmaze();

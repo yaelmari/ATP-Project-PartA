@@ -9,12 +9,13 @@ public class DepthFirstSearch implements ISearchingAlgorithm{
 
     @Override
     public String getName() {
-        return "DepthFirstSearch";
+        return "DFS";
     }
 
     @Override
     public Solution solve(ISearchable domain) {
         Solution sol = new Solution();
+        AState start = domain.getStartState();
 
 
 

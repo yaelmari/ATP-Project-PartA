@@ -6,7 +6,6 @@ public interface ISearchable {
     public ArrayList<AState> getAllPossibleStates(AState state);
     public AState getStartState();
 
-    public AState getStartState();
 
     public AState getExit();
 }

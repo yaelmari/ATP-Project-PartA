@@ -2,10 +2,14 @@ package algorithms.search;
 
 public class DepthFirstSearch implements ISearchingAlgorithm{
     private int[][] visitedCells;
+
+
+
     @Override
     public String getNumberOfNodesEvaluated() {
         return null;
     }
+
 
     @Override
     public String getName() {

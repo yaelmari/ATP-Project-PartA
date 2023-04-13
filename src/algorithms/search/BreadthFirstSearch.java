@@ -3,9 +3,10 @@ package algorithms.search;
 import java.util.*;
 
 public class BreadthFirstSearch implements ISearchingAlgorithm{
+    private int numberOfNodesEvaluated = 0;
     @Override
     public String getNumberOfNodesEvaluated() {
-        return null;
+        return Integer.toString(numberOfNodesEvaluated);
     }
 
     @Override
@@ -22,11 +23,16 @@ public class BreadthFirstSearch implements ISearchingAlgorithm{
         AState checked;
         while(!queue.isEmpty()) {
             checked = queue.remove(queue.size()-1);
+            this.numberOfNodesEvaluated++;
             for (AState neighbor : checked.getNeighbors()) {
                 if(!parents.containsKey(neighbor.toString())){
                     parents.put(neighbor.toString(),checked);
-                    queue.add(neighbor);
+                    queue.add(0,neighbor);
+
                 }
+            }
+            if(checked == domain.getGoalState()){
+              break; // The solution was found
             }
         }
         Solution solution = new Solution();

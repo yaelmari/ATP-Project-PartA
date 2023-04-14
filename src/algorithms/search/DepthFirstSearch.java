@@ -10,13 +10,17 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class DepthFirstSearch implements ISearchingAlgorithm{
     private int[][] visitedCells;
+    private int numberOfNodesEvaluated = 0;
+
 
     public DepthFirstSearch(){}
 
+
     @Override
     public String getNumberOfNodesEvaluated() {
-        return null;
+        return Integer.toString(numberOfNodesEvaluated);
     }
+
 
     @Override
     public String getName() {
@@ -33,6 +37,7 @@ public class DepthFirstSearch implements ISearchingAlgorithm{
 
         while (openP.size() > 0) {
             curr = openP.remove(openP.size() - 1); // Remove the current cell from the list
+            numberOfNodesEvaluated++;
 
             if(curr == domain.getGoalState()){
                 // Restore the track

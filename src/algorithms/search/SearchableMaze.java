@@ -42,7 +42,9 @@ public class SearchableMaze implements ISearchable{
         // update the adjacency list
         for(int row = 0; row < maze.getNRows(); row++) {
             for (int col = 0; col < maze.getNColumns(); col++) {
-                updateNeighbors(allStates, row, col);
+                if(maze.isEmptyCell(row, col)) {
+                    updateNeighbors(allStates, row, col);
+                }
             }
         }
         this.startState = allStates[0][0];
@@ -51,34 +53,49 @@ public class SearchableMaze implements ISearchable{
 
     private void updateNeighbors(AState[][] allStates, int statesRow, int statesCol)
     {
-        for(int row = -1; row < 2; row++)
-        {
-            for(int col = -1; col < 2; col++)
-            {
-                // Check is the current cell isn't itself
-                if(row == 0 && col == 0)
-                {
-                    continue;
-                }
-
-                // Check if the index isn't out of bounds of the array
-                if(row + statesRow < 0 || row + statesRow >= allStates.length)
-                {
-                    continue;
-                }
-
-                if(col + statesCol < 0 || (allStates.length > 0 && col + statesCol >= allStates[0].length))
-                {
-                    continue;
-                }
-
-                // Check if the neighbor isn't a wall
-                if(allStates[row + statesRow][col + statesCol] != null && allStates[statesRow][statesCol] != null)
-                {
-                    allStates[statesRow][statesCol].addNeighbor(allStates[row + statesRow][col + statesCol]);
-                }
+        boolean openUp = false, openDown = false, openRight = false, openLeft = false;
+        boolean availableUp = false, availableDown = false, availableLeft = false, availableRight = false;
+        if(statesRow - 1 >= 0){
+            availableUp = true; // The top row is inside the maze
+            openUp = checkSpecificNeighbor(allStates, -1, 0, statesRow, statesCol); // Check the top row
+        }
+        if(statesRow + 1 < allStates.length){
+            availableDown = true; // The top bottom is inside the maze
+            openDown = checkSpecificNeighbor(allStates, 1, 0, statesRow, statesCol); // Check the bottom row
+        }
+        if(statesCol - 1 >= 0){
+            availableLeft = true; // The top left is inside the maze
+            openLeft = checkSpecificNeighbor(allStates, 0, -1, statesRow, statesCol); // Check the left column
+        }
+        if(allStates.length > 0 && statesCol + 1 < allStates[0].length){
+            availableRight = true; // The top right is inside the maze
+            openRight = checkSpecificNeighbor(allStates, 0, 1, statesRow, statesCol); // Check the right column
+        }
+        if(availableUp){
+            if(availableLeft && (openUp || openLeft)){
+                checkSpecificNeighbor(allStates, -1, -1, statesRow, statesCol);
+            }
+            if(availableRight && (openUp || openRight)){
+                checkSpecificNeighbor(allStates, -1, 1, statesRow, statesCol);
             }
         }
+        if(availableDown){
+            if(availableLeft && (openDown || openLeft)){
+                checkSpecificNeighbor(allStates, 1, -1, statesRow, statesCol);
+            }
+            if(availableRight && (openDown || openRight)){
+                checkSpecificNeighbor(allStates, 1, 1, statesRow, statesCol);
+            }
+        }
+    }
+
+    private boolean checkSpecificNeighbor(AState[][] allStates, int moveRow, int moveCol, int statesRow, int statesCol)
+    {
+        if(allStates[statesRow + moveRow][statesCol + moveCol] != null) {
+            allStates[statesRow][statesCol].addNeighbor(allStates[statesRow + moveRow][statesCol + moveCol]);
+            return true;
+        }
+        return false;
     }
 
     @Override

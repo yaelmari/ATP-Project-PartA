@@ -18,7 +18,7 @@ public class SimpleMazeGenerator extends AMazeGenerator {
                 currPos[index]++;
                 maze.setSingleValue(currPos[0], currPos[1], 0);
             }
-            if (currPos[0] == nRows) {
+            if (currPos[0] == nRows - 1) {
                 index = 1;
                 maxPos = nColumns;
             } else {

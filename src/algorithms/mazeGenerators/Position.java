@@ -24,4 +24,11 @@ public class Position {
         // format "{row,column}"
         return "{" + String.valueOf(this.rowIndex) + "," + String.valueOf(this.columnIndex) + "}";
     }
+
+    public int getDistance(Position other){
+        int deltaX,deltaY;
+        deltaX = Math.abs(this.getColumnIndex() - other.getColumnIndex());
+        deltaY = Math.abs(this.getRowIndex() - other.getRowIndex());
+        return  deltaX + deltaY;
+    }
 }

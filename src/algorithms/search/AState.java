@@ -1,12 +1,19 @@
 package algorithms.search;
+import algorithms.mazeGenerators.Position;
+
 import java.util.ArrayList;
 
 public abstract class AState implements Comparable<AState> {
     protected ArrayList<AState> neighbors;
     protected AState parent;
+    protected Position pos;
 
     public AState getParent() {
         return parent;
+    }
+    public Position getPos()
+    {
+        return pos;
     }
 
     public void setParent(AState parent) {

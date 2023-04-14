@@ -3,7 +3,8 @@ package algorithms.search;
 import java.util.*;
 
 public class BreadthFirstSearch implements ISearchingAlgorithm{
-    private int numberOfNodesEvaluated = 0;
+    protected int numberOfNodesEvaluated = 0;
+    protected PriorityQueue<AState> queue = new PriorityQueue<AState>();
     @Override
     public String getNumberOfNodesEvaluated() {
         return Integer.toString(numberOfNodesEvaluated);
@@ -13,21 +14,28 @@ public class BreadthFirstSearch implements ISearchingAlgorithm{
     public String getName() {
         return "BFS";
     }
+    protected void inQueue(AState aState,AState parent){
+
+        queue.add(aState);
+    }
+
+    protected AState deQueue(){
+        return queue.poll();
+    }
 
     @Override
     public Solution solve(ISearchable domain) {
-        HashMap<String,AState> parents = new HashMap<>();
-        parents.put(domain.getStartState().toString(), null);
-        ArrayList<AState> queue = new ArrayList<>();
-        queue.add(0,domain.getStartState());
+        MazeState startNode = new MazeState(-1,-1);
+        domain.getStartState().setParent(startNode);
+        inQueue(domain.getStartState(),null);
         AState checked;
         while(!queue.isEmpty()) {
-            checked = queue.remove(queue.size()-1);
+            checked = deQueue();
             this.numberOfNodesEvaluated++;
             for (AState neighbor : checked.getNeighbors()) {
-                if(!parents.containsKey(neighbor.toString())){
-                    parents.put(neighbor.toString(),checked);
-                    queue.add(0,neighbor);
+                if(neighbor.getParent() == null){
+                    neighbor.setParent(checked);
+                    inQueue(neighbor,checked);
 
                 }
             }
@@ -37,9 +45,9 @@ public class BreadthFirstSearch implements ISearchingAlgorithm{
         }
         Solution solution = new Solution();
         checked = domain.getGoalState();
-        while(checked != null){
+        while(checked != startNode){
             solution.addToStart(checked);
-            checked = parents.get(checked.toString());
+            checked = checked.getParent();
 
 
         }
@@ -47,8 +55,4 @@ public class BreadthFirstSearch implements ISearchingAlgorithm{
          return solution;
     }
 
-//    @Override
-//    public void search() {
-//
-//    }
 }

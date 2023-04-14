@@ -7,6 +7,7 @@ public abstract class AState implements Comparable<AState> {
     protected ArrayList<AState> neighbors;
     protected AState parent;
     protected Position pos;
+    protected int cost;
 
     public AState getParent() {
         return parent;
@@ -32,7 +33,7 @@ public abstract class AState implements Comparable<AState> {
         this.cost += cost;
     }
 
-    protected int cost;
+
 
     public void addNeighbor(AState state)
     {

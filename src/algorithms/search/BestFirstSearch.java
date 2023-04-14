@@ -31,9 +31,4 @@ public class BestFirstSearch extends BreadthFirstSearch{
         return queue.poll();
 
     }
-
-//    @Override
-//    public void search() {
-//
-//    }
 }

@@ -25,8 +25,9 @@ public class BreadthFirstSearch implements ISearchingAlgorithm{
 
     @Override
     public Solution solve(ISearchable domain) {
-        MazeState startNode = new MazeState(-1,-1);
-        domain.getStartState().setParent(startNode);
+        ArrayList<AState> visited = new ArrayList<>();
+        MazeState parentStartNode = new MazeState(-1,-1);
+        domain.getStartState().setParent(parentStartNode);
         inQueue(domain.getStartState(),null);
         AState checked;
         while(!queue.isEmpty()) {
@@ -35,7 +36,11 @@ public class BreadthFirstSearch implements ISearchingAlgorithm{
             for (AState neighbor : checked.getNeighbors()) {
                 if(neighbor.getParent() == null){
                     neighbor.setParent(checked);
+                    if(!visited.contains(neighbor)){
+                        visited.add(neighbor);
+                    }
                     inQueue(neighbor,checked);
+
 
                 }
             }
@@ -45,11 +50,14 @@ public class BreadthFirstSearch implements ISearchingAlgorithm{
         }
         Solution solution = new Solution();
         checked = domain.getGoalState();
-        while(checked != startNode){
+        while(checked != parentStartNode){
             solution.addToStart(checked);
             checked = checked.getParent();
-
-
+        }
+        for (AState aState :
+                visited) {
+            aState.setParent(null);
+            aState.setCost(0);
         }
 
          return solution;

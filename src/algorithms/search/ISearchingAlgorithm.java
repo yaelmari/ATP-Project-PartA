@@ -7,6 +7,4 @@ public interface ISearchingAlgorithm {
     public String getName();
 
     Solution solve(ISearchable domain);
-
-//    void search();
 }

@@ -9,6 +9,8 @@ public class MazeState extends AState{
 
         public MazeState(int xPos, int yPos)
         {
+                this.parent = null;
+                this.cost = 0;
                 this.pos = new Position(xPos, yPos);
                 this.neighbors = new ArrayList<>();
         }

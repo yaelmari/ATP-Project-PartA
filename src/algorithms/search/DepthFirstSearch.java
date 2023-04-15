@@ -1,15 +1,12 @@
 package algorithms.search;
 import java.util.ArrayList;
 
-public class DepthFirstSearch implements ISearchingAlgorithm{
-    private int numberOfNodesEvaluated = 0;
+public class DepthFirstSearch extends ASearchingAlgorithm{
+
 
     public DepthFirstSearch(){}
 
-    @Override
-    public String getNumberOfNodesEvaluated() {
-        return Integer.toString(numberOfNodesEvaluated);
-    }
+
 
     @Override
     public String getName() {
@@ -18,30 +15,59 @@ public class DepthFirstSearch implements ISearchingAlgorithm{
 
     @Override
     public Solution solve(ISearchable domain) {
+        numberOfNodesEvaluated = 0;
         AState start = domain.getStartState(), curr;
         ArrayList<AState> openP = new ArrayList<>(), neighbors;
+        Solution sol;
         start.setParent(start);
         openP.add(start);
 
-        while (openP.size() > 0) {
+        addToVisited(start);
+
+
+        while (!openP.isEmpty()) {
             curr = openP.remove(openP.size() - 1); // Remove the current cell from the list
             numberOfNodesEvaluated++;
 
+
             if(curr == domain.getGoalState()){
                 // Restore the track
-                return restoreTrack(start, curr); // The solution was found
+                sol = restoreTrack(start, curr); // The solution was found
+//                int size = openP.size();
+//                for(int i = 0; i < size;i++){
+//                    addToVisited(openP.get(0));
+//                }
+
+                resetVisited();
+                return sol;
+
             }
 
             neighbors = curr.getNeighbors(); // Get the neighbors of the current state
-            // Add the neighbors to the open list
+//             Add the neighbors to the open list
+//            for (AState neighbor : neighbors) {
+//                if (!visitedContains(neighbor)) {
+//                    neighbor.setParent(curr);
+//                    addToVisited(neighbor);
+//                    openP.add(neighbor); // if the state wasn't visited, add it to the open list
+//                }
+//            }
+
+
+
+
             for (AState neighbor : neighbors) {
                 if (neighbor.getParent() == null) {
                     neighbor.setParent(curr);
+                  //  if (!visitedContains(neighbor)){
+                    addToVisited(neighbor);//}
                     openP.add(neighbor); // if the state wasn't visited, add it to the open list
                 }
             }
+
         }
 
+        resetVisited();
         return null;
     }
 

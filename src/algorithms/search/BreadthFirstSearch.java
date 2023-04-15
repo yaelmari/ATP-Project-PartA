@@ -2,13 +2,10 @@ package algorithms.search;
 
 import java.util.*;
 
-public class BreadthFirstSearch implements ISearchingAlgorithm{
-    protected int numberOfNodesEvaluated = 0;
+public class BreadthFirstSearch extends ASearchingAlgorithm{
+
     protected PriorityQueue<AState> queue = new PriorityQueue<AState>();
-    @Override
-    public String getNumberOfNodesEvaluated() {
-        return Integer.toString(numberOfNodesEvaluated);
-    }
+
 
     @Override
     public String getName() {
@@ -25,7 +22,8 @@ public class BreadthFirstSearch implements ISearchingAlgorithm{
 
     @Override
     public Solution solve(ISearchable domain) {
-        ArrayList<AState> visited = new ArrayList<>();
+
+        numberOfNodesEvaluated = 0;
         MazeState parentStartNode = new MazeState(-1,-1);
         domain.getStartState().setParent(parentStartNode);
         inQueue(domain.getStartState(),null);
@@ -33,19 +31,23 @@ public class BreadthFirstSearch implements ISearchingAlgorithm{
         while(!queue.isEmpty()) {
             checked = deQueue();
             this.numberOfNodesEvaluated++;
+            if(!visitedContains(checked)){
+                addToVisited(checked);
+            }
             for (AState neighbor : checked.getNeighbors()) {
                 if(neighbor.getParent() == null){
                     neighbor.setParent(checked);
-                    if(!visited.contains(neighbor)){
-                        visited.add(neighbor);
-                    }
                     inQueue(neighbor,checked);
 
 
                 }
             }
-            if(checked == domain.getGoalState()){
-              break; // The solution was found
+            if(Objects.equals(checked.toString(), domain.getGoalState().toString())){
+                int size = queue.size();
+                for(int i = 0; i < size;i++){
+                    addToVisited(deQueue());
+                }
+                break; // The solution was found
             }
         }
         Solution solution = new Solution();
@@ -54,11 +56,8 @@ public class BreadthFirstSearch implements ISearchingAlgorithm{
             solution.addToStart(checked);
             checked = checked.getParent();
         }
-        for (AState aState :
-                visited) {
-            aState.setParent(null);
-            aState.setCost(0);
-        }
+        resetVisited();
+
 
          return solution;
     }

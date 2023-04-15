@@ -67,7 +67,6 @@ public class Maze {
         {
             for (int j = 0; j < this.mazeTable[0].length; j++)
             {
-                // We need to add: S for Start and E for Exit !!!!!!!!!!!!!!!
                 if(i == startPos.getRowIndex() && j == startPos.getColumnIndex())
                 {
                     System.out.print("S ");

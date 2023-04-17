@@ -1,8 +1,8 @@
 package algorithms.mazeGenerators;
 
 public class Position {
-    private final int rowIndex;
-    private final int columnIndex;
+    protected final int rowIndex;
+    protected final int columnIndex;
 
     public Position(int rowIndex, int columnIndex)
     {

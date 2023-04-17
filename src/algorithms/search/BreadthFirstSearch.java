@@ -12,8 +12,10 @@ public class BreadthFirstSearch extends ASearchingAlgorithm{
         return "BFS";
     }
     protected void inQueue(AState aState,AState parent){
-
-        queue.add(aState);
+//        if(parent != null){
+//            aState.setCost(parent.getCost() + 1);
+//        }
+         queue.add(aState);
     }
 
     protected AState deQueue(){
@@ -31,6 +33,7 @@ public class BreadthFirstSearch extends ASearchingAlgorithm{
         while(!queue.isEmpty()) {
             checked = deQueue();
             this.numberOfNodesEvaluated++;
+//            System.out.println(checked);
             if(!visitedContains(checked)){
                 addToVisited(checked);
             }

@@ -7,16 +7,21 @@ import java.util.ArrayList;
 public class RunSearchOnMaze {
 
         public static void main(String[] args) {
-//            IMazeGenerator mg = new MyMazeGenerator();
-            IMazeGenerator mg = new SimpleMazeGenerator();
+            IMazeGenerator mg = new MyMazeGenerator();
+//            IMazeGenerator mg = new SimpleMazeGenerator();
             Maze maze = mg.generate(1000, 1000  );
 //            maze.print();
             SearchableMaze searchableMaze = new SearchableMaze(maze);
-//            System.out.println("\n\n BFS \n\n");
+//            solveProblem(searchableMaze, new BestFirstSearch());
+//            solveProblem(searchableMaze, new BestFirstSearch());
+////            System.out.println("\n\n BFS \n\n");
+//            solveProblem(searchableMaze, new BreadthFirstSearch());
             solveProblem(searchableMaze, new BreadthFirstSearch());
-//            System.out.println("\n\n DFS \n\n");
+
+//            solveProblem(searchableMaze, new BreadthFirstSearch());
+////            System.out.println("\n\n DFS \n\n");
             solveProblem(searchableMaze, new DepthFirstSearch());
-//            System.out.println("\n\n BEST \n\n");
+////            System.out.println("\n\n BEST \n\n");
             solveProblem(searchableMaze, new BestFirstSearch());
 //            solveProblem(searchableMaze, new BreadthFirstSearch());
 //            solveProblem(searchableMaze, new DepthFirstSearch());
@@ -44,6 +49,7 @@ public class RunSearchOnMaze {
 //            for (int i = 0; i < solutionPath.size(); i++) {
 //                System.out.println(String.format("%s. %s",i,solutionPath.get(i)));
 //            }
+            System.out.println(solutionPath.size());
             endTime = System.currentTimeMillis();
             System.out.println("The time is: " + (endTime - startTime));
         }

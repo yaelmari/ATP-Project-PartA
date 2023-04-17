@@ -16,13 +16,17 @@ public class BestFirstSearch extends BreadthFirstSearch{
         if(parent == null){
             queue.add(aState);
             return;
-        } else if (aState.getPos().getDistance(parent.getPos()) == 1) {
-            aState.addCost(10);
+        }
+
+        else if (aState.getPos().getDistance(parent.getPos()) == 1) {
+            aState.setCost(parent.getCost() + 10);
         }
         else if(aState.getPos().getDistance(parent.getPos()) == 2){
-            aState.addCost(15);
+            aState.setCost(parent.getCost() + 15);
         }
         queue.add(aState);
+
+
 
     }
 

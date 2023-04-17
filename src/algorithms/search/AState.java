@@ -30,14 +30,14 @@ public abstract class AState implements Comparable<AState> {
     }
 
     public void addCost(int cost) {
-        this.cost += cost;
+        this.cost = this.cost + cost;
     }
 
 
 
     public void addNeighbor(AState state)
     {
-        this.neighbors.add(state);
+        this.neighbors.add(0,state);
     }
 
     public ArrayList<AState> getNeighbors()
@@ -52,6 +52,11 @@ public abstract class AState implements Comparable<AState> {
 
     @Override
     public int compareTo(AState other){
-        return Integer.compare(this.cost, other.cost);
+        if(this.getCost() <= other.getCost()){return 1;}
+        else {return -1;}
+
+//        return Integer.compare(this.getCost(), other.getCost());
+
+
     }
 }

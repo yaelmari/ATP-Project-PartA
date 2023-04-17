@@ -7,17 +7,20 @@ public abstract class ASearchingAlgorithm  implements ISearchingAlgorithm{
     protected int numberOfNodesEvaluated = 0;
 
 
-    protected void resetVisited(){
+    protected int resetVisited(){
 //        System.out.println("\n\nbefore: " + visited.size());
         AState aState;
         int size = visited.size();
 //        this.numberOfNodesEvaluated = size;
+        int cnt = 0;
         for (int i = 0 ; i<size;i++) {
             aState = visited.get(0);
+            if(aState.getParent() != null){cnt++;}
             aState.setParent(null);
             aState.setCost(0);
             visited.remove(0);
         }
+        return cnt;
 //        System.out.println("after: " + visited.size());
     }
     protected void addToVisited(AState aState){

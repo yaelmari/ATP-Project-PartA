@@ -56,19 +56,19 @@ public class SearchableMaze implements ISearchable{
         boolean openUp = false, openDown = false, openRight = false, openLeft = false;
         boolean availableUp = false, availableDown = false, availableLeft = false, availableRight = false;
         if(statesRow - 1 >= 0){
-            availableUp = true; // The top row is inside the maze
+            availableUp = true;
             openUp = checkSpecificNeighbor(allStates, -1, 0, statesRow, statesCol); // Check the top row
         }
         if(statesRow + 1 < allStates.length){
-            availableDown = true; // The top bottom is inside the maze
+            availableDown = true;
             openDown = checkSpecificNeighbor(allStates, 1, 0, statesRow, statesCol); // Check the bottom row
         }
         if(statesCol - 1 >= 0){
-            availableLeft = true; // The top left is inside the maze
+            availableLeft = true;
             openLeft = checkSpecificNeighbor(allStates, 0, -1, statesRow, statesCol); // Check the left column
         }
         if(allStates.length > 0 && statesCol + 1 < allStates[0].length){
-            availableRight = true; // The top right is inside the maze
+            availableRight = true;
             openRight = checkSpecificNeighbor(allStates, 0, 1, statesRow, statesCol); // Check the right column
         }
         if(availableUp){

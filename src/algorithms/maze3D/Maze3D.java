@@ -7,7 +7,7 @@ public class Maze3D {
     private int nDepth;
     private int nRows;
     private int nColumns;
-    public Maze3D(int nDepth, int nRows, int nColumns){
+    public Maze3D(int nDepth, int nRows, int nColumns, Position3D startPos, Position3D goalPos){
        this.nDepth = nDepth;
         this.nRows = nRows;
         this.nColumns = nColumns;

@@ -1,0 +1,8 @@
+Test started!
+TEST Passed: generating maze (5*5) using SimpleMazeGenerator
+TEST Passed: Applying BreadthFirstSearch on maze (5,5)
+Test finished!
+Test started!
+TEST Passed: generating maze (5*5) using SimpleMazeGenerator
+Fatal Error when converting Maze to SearchableMaze (5,5): Index -1 out of bounds for length 5
+Test finished!

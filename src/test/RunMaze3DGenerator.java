@@ -3,6 +3,7 @@ package test;
 import algorithms.maze3D.IMazeGenerator3D;
 import algorithms.maze3D.Maze3D;
 import algorithms.maze3D.MyMaze3DGenerator;
+import algorithms.maze3D.Position3D;
 import algorithms.mazeGenerators.IMazeGenerator;
 import algorithms.mazeGenerators.Maze;
 import algorithms.mazeGenerators.MyMazeGenerator;
@@ -18,7 +19,8 @@ public class RunMaze3DGenerator {
         // generate another maze
 //        Maze3D maze3d = mazeGenerator.generate(100/*rows*/, 100/*columns*/);
 
-        Maze3D maze3d = new Maze3D(3, 3, 5);
+        Maze3D maze3d = new Maze3D(3, 3, 5, new Position3D(0, 0,0 ),
+                new Position3D(0, 2, 4));
         // prints the maze
         maze3d.print();
         // get the maze entrance

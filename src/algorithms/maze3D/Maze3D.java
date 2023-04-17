@@ -1,5 +1,7 @@
 package algorithms.maze3D;
 
+import java.util.Arrays;
+
 public class Maze3D {
     private int[][][] maze3dTable;
     private Position3D startPos;
@@ -13,7 +15,7 @@ public class Maze3D {
         this.nColumns = nColumns;
         this.startPos = new Position3D(0, 0, 0);
         this.goalPos = new Position3D(0, nRows - 1, nColumns - 1);
-        maze3dTable = new int[][][]{
+        maze3dTable = new int[][][] {
                 {
                         {0, 0, 1, 0, 1},
                         {0, 1, 1, 1, 0},
@@ -33,13 +35,13 @@ public class Maze3D {
 
     }
     public int[][][] getMap(){
-        return null;
+        return maze3dTable;
     }
     public Position3D getStartPosition(){
-        return null;
+        return startPos;
     }
     public Position3D getGoalPosition(){
-        return null;
+        return goalPos;
     }
 
     public void print()
@@ -79,5 +81,17 @@ public class Maze3D {
 
     public int getnColumns() {
         return nColumns;
+    }
+
+    public boolean isEmptyCell(int dep, int row, int col){
+        return this.getMap()[dep][row][col] == 0;
+    }
+
+    public void setRowWithValue(int depth, int row, int value) {
+        Arrays.fill(this.maze3dTable[depth][row], value);
+    }
+
+    public void setSingleValue(int depth, int row, int col, int value) {
+        this.maze3dTable[depth][row][col] = value;
     }
 }

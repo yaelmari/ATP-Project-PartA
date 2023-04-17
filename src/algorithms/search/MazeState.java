@@ -5,7 +5,7 @@ import algorithms.mazeGenerators.Position;
 import java.util.ArrayList;
 
 public class MazeState extends AState{
-       // private Position pos;
+        protected Position pos;
 
         public MazeState(int xPos, int yPos)
         {
@@ -14,7 +14,7 @@ public class MazeState extends AState{
                 this.pos = new Position(xPos, yPos);
                 this.neighbors = new ArrayList<>();
         }
-
+        @Override
         public Position getPos()
         {
                 return pos;

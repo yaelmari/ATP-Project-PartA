@@ -51,10 +51,8 @@ public class MyMazeGenerator extends AMazeGenerator{
         }
 
         // create wall in every second row (starting from 0), in every second cell.
-        for(int row = 0; row < maze.getNRows(); row+=2)
-        {
-            for(int col = 0; col < maze.getNColumns(); col++)
-            {
+        for(int row = 0; row < maze.getNRows(); row+=2){
+            for(int col = 0; col < maze.getNColumns(); col++){
                 maze.setSingleValue(row, col, col % 2);
             }
         }
@@ -65,7 +63,7 @@ public class MyMazeGenerator extends AMazeGenerator{
     {
         Position startP = new Position(0, 0), curr, last;
         List<Position> unvisitedNeighbors, openP = new ArrayList<>();
-        int moveInRow, moveInCol, neighborIndex, currRowInVisitedArr, currColInVisitedArr;
+        int moveInRow, moveInCol, neighborIndex;
         Dictionary<Position, int[]> movesDict = new Hashtable<>();
         visitedCells[0][0] = 1;
         last = startP;

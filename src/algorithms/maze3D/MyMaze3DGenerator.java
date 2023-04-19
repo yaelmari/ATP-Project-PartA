@@ -15,15 +15,8 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
         Position3D startPos = new Position3D(0, 0, 0);
         Position3D goalPos = new Position3D(0, row - 1, column - 1);
         this.maze3D = new Maze3D(depth, row, column, startPos, goalPos);
-//        int nRowsVisitedArr = row / 2, nColsVisitedArr = column / 2;
-//
+
         resetDFSmaze();
-//        if(row % 2  == 1){
-//            nRowsVisitedArr++;
-//        }
-//        if(column % 2  == 1){
-//            nColsVisitedArr++;
-//        }
 
         this.visitedCells = new int[depth][row][column];
         resetVisitedArr(depth, row, column);
@@ -62,10 +55,6 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
                 }
             }
         }
-//        maze3D.print();
-//        System.out.println();
-//        System.out.println();
-//        System.out.println();
     }
 
     private void dfsMazeGenerator()
@@ -140,45 +129,26 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
         Position3D newPos;
 
         // Check if the current cell was already discovered by another path
-//        if(visitedCells[depth][row][col] == 0) {
-            if (maze3D.isEmptyCell(currsDepth, currsRow, currsCol) && visitedCells[currsDepth][currsRow][currsCol] != 1) { // it must be a open cell
-                // Calculate the amount of cells and their direction that we need to move in the maze
-                moveInDepth = movesDict.get(curr)[0]; // amount of moves (depth)
-                moveInRow = movesDict.get(curr)[1]; // amount of moves (rows)
-                moveInCol = movesDict.get(curr)[2]; // amount of moves (columns)
+        if (maze3D.isEmptyCell(currsDepth, currsRow, currsCol) && visitedCells[currsDepth][currsRow][currsCol] != 1) { // it must be a open cell
+            // Calculate the amount of cells and their direction that we need to move in the maze
+            moveInDepth = movesDict.get(curr)[0]; // amount of moves (depth)
+            moveInRow = movesDict.get(curr)[1]; // amount of moves (rows)
+            moveInCol = movesDict.get(curr)[2]; // amount of moves (columns)
 
-                movesDict.remove(curr);
-                openP.remove(curr); // Remove the current cell from the list
+            movesDict.remove(curr);
+            openP.remove(curr); // Remove the current cell from the list
 
 
-//                wallsDepth = last.getDepthIndex() + moveInDepth / 2;
-//                wallsRow = last.getRowIndex() + moveInRow / 2;
-//                wallsCol = last.getColumnIndex() + moveInCol / 2;
-                wallsDepth = curr.getDepthIndex() - moveInDepth / 2;
-                wallsRow = curr.getRowIndex() - moveInRow / 2;
-                wallsCol = curr.getColumnIndex() - moveInCol / 2;
-                visitedCells[wallsDepth][wallsRow][wallsCol] = 1; // mark the cell as visited
-                visitedCells[currsDepth][currsRow][currsCol] = 1; // mark the cell as visited
-                this.maze3D.setSingleValue(wallsDepth, wallsRow, wallsCol, 0); // open the wall
-//                try {
-//                    if(visitedCells[wallsDepth][wallsRow][wallsCol] == 0) {
-//                        newPos = new Position3D(wallsDepth, wallsRow, wallsCol);
-//
-//                        visitedCells[depth][row][col] = 1; // mark the cell as visited
-//                        this.maze3D.setSingleValue(depth, row, col, 0); // open the wall
-//
-//                        // Add the new cell to the open list to complete the move
-//                        openP.add(newPos);
-////                    movesDict.put(newPos, new int[]{moveInDepth, moveInRow, moveInCol});
-//                        // Complete the step: pass the wall and mark the next open cell as visited
-//                        visitedCells[wallsDepth][wallsRow][wallsCol] = 1; // mark the cell as visited
-//                    }
-//                    if(!openP.isEmpty()) {
-                        return curr;
-//                    }
-//                }catch (IndexOutOfBoundsException ignored){};
-            }
-//        }
+            wallsDepth = curr.getDepthIndex() - moveInDepth / 2;
+            wallsRow = curr.getRowIndex() - moveInRow / 2;
+            wallsCol = curr.getColumnIndex() - moveInCol / 2;
+            visitedCells[wallsDepth][wallsRow][wallsCol] = 1; // mark the cell as visited
+            visitedCells[currsDepth][currsRow][currsCol] = 1; // mark the cell as visited
+            this.maze3D.setSingleValue(wallsDepth, wallsRow, wallsCol, 0); // open the wall
+
+            return curr;
+
+        }
         return null;
     }
 

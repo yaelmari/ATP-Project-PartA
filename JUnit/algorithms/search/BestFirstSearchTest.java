@@ -90,10 +90,6 @@ class BestFirstSearchTest {
         bfsCost = getCost(solBFS);
 
         assertTrue(bestCost <= bfsCost);
-
-
-
-
     }
 
     int getCost(Solution solution ){

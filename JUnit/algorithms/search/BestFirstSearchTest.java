@@ -89,7 +89,6 @@ class BestFirstSearchTest {
 
         bfsCost = getCost(solBFS);
 
-        System.out.println("BFS : " + bfsCost +", BEST : " + bestCost);
         assertTrue(bestCost <= bfsCost);
 
 

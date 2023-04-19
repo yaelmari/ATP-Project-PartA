@@ -60,20 +60,8 @@ public class BreadthFirstSearch extends ASearchingAlgorithm{
         int total = 0;
         while(checked != parentStartNode){
             solution.addToStart(checked);
-
-            if (checked != domain.getStartState() && checked.getPos().getDistance(checked.getParent().getPos()) == 1){
-                total = total + 10;
-            }
-            else if (checked != domain.getStartState() && checked.getPos().getDistance(checked.getParent().getPos()) == 2){
-
-                total = total + 15;
-            }
-
             checked = checked.getParent();
         }
-//        domain.getGoalState().setCost(total);
-        System.out.println("the cost is: "+ total);
-//        System.out.println("last price: " + domain.getGoalState().getCost());
 
         resetVisited();         // use the reset visited function to clear the visited array
 

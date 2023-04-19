@@ -10,6 +10,10 @@ public class SimpleMazeGenerator extends AMazeGenerator {
         int maxPos, index;
         int[] currPos = {0, 0};
 
+        if(nRows == 0 || nColumns == 0){
+            return null;
+        }
+
         maze.resetMazeWithValue(1);
         maze.setSingleValue(startPos.getRowIndex(), startPos.getColumnIndex(), 0);
         for (int i = 0 ; i < NUMBER_OF_TRACKS ;i++){

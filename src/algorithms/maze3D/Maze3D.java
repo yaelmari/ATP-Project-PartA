@@ -10,30 +10,12 @@ public class Maze3D {
     private int nRows;
     private int nColumns;
     public Maze3D(int nDepth, int nRows, int nColumns, Position3D startPos, Position3D goalPos){
-       this.nDepth = nDepth;
+        this.nDepth = nDepth;
         this.nRows = nRows;
         this.nColumns = nColumns;
         this.startPos = new Position3D(0, 0, 0);
         this.goalPos = new Position3D(0, nRows - 1, nColumns - 1);
         maze3dTable = new int[nDepth][nRows][nColumns];
-//        maze3dTable = new int[][][] {
-//                {
-//                        {0, 0, 1, 0, 1},
-//                        {0, 1, 1, 1, 0},
-//                        {0, 1, 1, 0, 0}
-//                },
-//                {
-//                        {1, 1, 1, 0, 1},
-//                        {1, 0, 0, 1, 0},
-//                        {0, 0, 1, 0, 1}
-//                },
-//                {
-//                        {1, 1, 1, 0, 1},
-//                        {1, 1, 0, 0, 0},
-//                        {1, 1, 1, 0, 1}
-//                }
-//        };
-
     }
     public int[][][] getMap(){
         return maze3dTable;
@@ -66,14 +48,6 @@ public class Maze3D {
 
     public int getValue(int dep, int row, int col){
         return this.getMap()[dep][row][col];
-    }
-
-    public Position3D getStartPos() {
-        return startPos;
-    }
-
-    public Position3D getGoalPos() {
-        return goalPos;
     }
 
     public int getnDepth() {

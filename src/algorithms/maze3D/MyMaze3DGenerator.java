@@ -1,9 +1,5 @@
 package algorithms.maze3D;
 
-import algorithms.mazeGenerators.Maze;
-import algorithms.mazeGenerators.MyMazeGenerator;
-import algorithms.mazeGenerators.Position;
-
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -19,7 +15,7 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
         resetDFSmaze();
 
         this.visitedCells = new int[depth][row][column];
-        resetVisitedArr(depth, row, column);
+        resetVisitedArr(depth, row);
 
         dfsMazeGenerator();
         if(depth % 2 == 0){
@@ -29,7 +25,7 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
         return maze3D;
     }
 
-    private void resetVisitedArr(int nDepthVisitedArr, int nRowsVisitedArr, int nColsVisitedArr) {
+    private void resetVisitedArr(int nDepthVisitedArr, int nRowsVisitedArr) {
         for (int depth = 0; depth < nDepthVisitedArr; depth++) {
             for (int row = 0; row < nRowsVisitedArr; row++) {
                 // visited = 1, did not visit = 0
@@ -41,7 +37,7 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
     private void resetDFSmaze()
     {
         int value;
-        for (int depth = 0; depth < this.maze3D.getnDepth() - 1; depth++) {
+        for (int depth = 0; depth < this.maze3D.getnDepth(); depth++) {
             // Create wall in every second row (starting from 1)
             for (int row = 1; row < this.maze3D.getnRows(); row += 2) {
                 maze3D.setRowWithValue(depth, row, 1);
@@ -59,24 +55,20 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
 
     private void dfsMazeGenerator()
     {
-        Position3D startP = new Position3D(0, 0, 0), curr, last;
+        Position3D startP = new Position3D(0, 0, 0), curr, last = startP;
         List<Position3D> unvisitedNeighbors, openP = new ArrayList<>();
-        int moveInDepth, moveInRow, moveInCol, neighborIndex, currRowInVisitedArr, currColInVisitedArr;
+        int moveInDepth, moveInRow, moveInCol, neighborIndex;
         Dictionary<Position3D, int[]> movesDict = new Hashtable<>();
         visitedCells[0][0][0] = 1;
-        last = startP;
 
         do{
-            if(last.getDepthIndex() == maze3D.getGoalPos().getDepthIndex() &&
-                    last.getRowIndex() == maze3D.getGoalPos().getRowIndex() &&
-                    last.getColumnIndex() == maze3D.getGoalPos().getColumnIndex())
+            if(last != null && last.getDepthIndex() == maze3D.getGoalPosition().getDepthIndex() &&
+                    last.getRowIndex() == maze3D.getGoalPosition().getRowIndex() &&
+                    last.getColumnIndex() == maze3D.getGoalPosition().getColumnIndex())
             {
-                if(openP.isEmpty())
-                {
-                    break;
-                }
+                if(openP.isEmpty()){break;}
             }
-            else if(last != null){
+            else{
                 unvisitedNeighbors = getMyUnvisitedNeighbors(last); // Get the unvisited neighbors of the current position
                 // Add the neighbors to the open list in a random order
                 for (int maxNumOfNeighbor = unvisitedNeighbors.size(); maxNumOfNeighbor > 0; maxNumOfNeighbor--) {
@@ -93,16 +85,12 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
             if(!openP.isEmpty()){
                 last = handleCurrCell(openP, movesDict);
             }
-            else {
-                last = null;
-            }
-
         }while(last != null && !openP.isEmpty());
-
         openGoalCell();
     }
 
     private void handleThelastDepth() {
+        // If the max depth is even, the last depth will be the same as 2 depth before it.
         int myDepth = maze3D.getnDepth() - 1, depthToCopy, value;
 
         if(myDepth == 1){
@@ -126,7 +114,6 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
         int currsDepth = curr.getDepthIndex(), currsRow = curr.getRowIndex(), currsCol = curr.getColumnIndex();
         int moveInDepth, moveInRow, moveInCol;
         int wallsDepth, wallsRow, wallsCol;
-        Position3D newPos;
 
         // Check if the current cell was already discovered by another path
         if (maze3D.isEmptyCell(currsDepth, currsRow, currsCol) && visitedCells[currsDepth][currsRow][currsCol] != 1) { // it must be a open cell
@@ -138,7 +125,6 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
             movesDict.remove(curr);
             openP.remove(curr); // Remove the current cell from the list
 
-
             wallsDepth = curr.getDepthIndex() - moveInDepth / 2;
             wallsRow = curr.getRowIndex() - moveInRow / 2;
             wallsCol = curr.getColumnIndex() - moveInCol / 2;
@@ -147,7 +133,6 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
             this.maze3D.setSingleValue(wallsDepth, wallsRow, wallsCol, 0); // open the wall
 
             return curr;
-
         }
         return null;
     }
@@ -170,9 +155,8 @@ public class MyMaze3DGenerator extends AMaze3DGenerator{
 
     private List<Position3D> getMyUnvisitedNeighbors(Position3D p)
     {
-        int row = p.getRowIndex(), col = p.getColumnIndex(), depth = p.getDepthIndex();
+        int row = p.getRowIndex(), col = p.getColumnIndex(), depth = p.getDepthIndex(), stepCheck = 2;
         List<Position3D> unvisitedNeighbors = new ArrayList<>();
-        int stepCheck = 2;
 
         if(row - stepCheck >= 0){
             // Check the "back" neighbor

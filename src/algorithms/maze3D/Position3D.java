@@ -6,7 +6,6 @@ public class Position3D extends Position{
 
     private final int depthIndex;
 
-
     public Position3D(int depthIndex, int rowIndex, int columnIndex){
         super(rowIndex,columnIndex);
         this.depthIndex = depthIndex;
@@ -14,13 +13,6 @@ public class Position3D extends Position{
     public int getDepthIndex()
     {
         return depthIndex;
-    }
-
-    public int getRowIndex() {
-        return rowIndex;
-    }
-    public int getColumnIndex() {
-        return columnIndex;
     }
 
     public boolean checkEqualIndexes(int depthIndex, int rowIndex, int columnIndex){
@@ -36,9 +28,7 @@ public class Position3D extends Position{
     @Override
     public String toString()
     {
-        // format "{row,column}"
+        // format "{depth,row,column}"
         return "{" + String.valueOf(this.getDepthIndex()) + "," + String.valueOf(this.getRowIndex()) +"," + String.valueOf(this.getColumnIndex()) + "}";
     }
-
-
-    }
+}

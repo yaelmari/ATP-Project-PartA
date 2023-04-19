@@ -18,7 +18,7 @@ public class RunMaze3DGenerator {
 //        System.out.println(String.format("Maze generation time(ms): %s", mazeGenerator.measureAlgorithmTimeMillis(1000/*rows*/, 1000/*columns*/)));
         // generate another maze
 
-        Maze3D maze3d = mazeGenerator.generate(4, 4, 4);
+        Maze3D maze3d = mazeGenerator.generate(5, 10, 10);
 
 //        Maze3D maze3d = new Maze3D(3, 3, 5, new Position3D(0, 0,0 ),
 //                new Position3D(0, 2, 4));

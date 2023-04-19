@@ -1,6 +1,4 @@
 package algorithms.maze3D;
-
-import algorithms.mazeGenerators.Position;
 import algorithms.search.AState;
 
 import java.util.ArrayList;
@@ -19,7 +17,4 @@ public class Maze3DState extends AState {
         String ans = this.pos.toString();
         return ans;
     }
-
-
-
 }

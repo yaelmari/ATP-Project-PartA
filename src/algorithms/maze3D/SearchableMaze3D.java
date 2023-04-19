@@ -12,7 +12,6 @@ public class SearchableMaze3D implements ISearchable {
     private AState goalState;
 
     public SearchableMaze3D(Maze3D maze3D){
-//        Position startPos = maze3D.getStartPosition();
         AState[][][] allStates = new AState[maze3D.getnDepth()][maze3D.getnRows()][maze3D.getnColumns()];
         buildAdjacencyList(maze3D, allStates);
 
@@ -32,8 +31,6 @@ public class SearchableMaze3D implements ISearchable {
 
 
     public void buildAdjacencyList(Maze3D maze,AState[][][] allStates){
-
-
         for(int depth = 0 ; depth < maze.getnRows();depth++) {
             for (int column = 0; column < maze.getnColumns(); column++) {
                 for (int row = 0; row < maze.getnRows(); row++) {
@@ -52,11 +49,6 @@ public class SearchableMaze3D implements ISearchable {
                     // The cell is empty, we can add it to the allStates matrix
                     if(maze.isEmptyCell(depth,row,column)){
                         updateNeighbors(allStates, row, column,depth);
-//                        System.out.println(depth+"," +row+"," +column+" : ");
-//                        for(AState aState:allStates[depth][row][column].getNeighbors() ){
-//                            System.out.println(aState.toString());
-//                        }
-//                        System.out.println();
                     }
                 }
             }
@@ -88,8 +80,6 @@ public class SearchableMaze3D implements ISearchable {
                     checked.addNeighbor(allStates[dep][row][col + index]);
                 }
             }catch (IndexOutOfBoundsException ignored) {}
-
-
         }
     }
 }

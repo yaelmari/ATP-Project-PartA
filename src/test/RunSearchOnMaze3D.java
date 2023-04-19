@@ -16,7 +16,7 @@ public class RunSearchOnMaze3D {
         public static void main(String[] args) {
             IMazeGenerator3D mg = new MyMaze3DGenerator();
 //            IMazeGenerator mg = new SimpleMazeGenerator();
-            Maze3D maze3d = mg.generate(4, 4, 4  );
+            Maze3D maze3d = mg.generate(100, 100, 100  );
             maze3d.print();
             SearchableMaze3D searchableMaze = new SearchableMaze3D(maze3d);
 

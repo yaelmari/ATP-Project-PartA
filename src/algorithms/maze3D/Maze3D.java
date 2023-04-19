@@ -50,13 +50,13 @@ public class Maze3D {
         for (int depth = 0; depth < this.maze3dTable.length; depth++) {
             for (int row = 0; row < this.maze3dTable[0].length; row++){
                 for (int col = 0; col < this.maze3dTable[0][0].length; col++){
-//                    if (startPos.checkEqualIndexes(depth, row, col)) {
-//                        System.out.print("S ");
-//                    } else if (goalPos.checkEqualIndexes(depth, row, col)) {
-//                        System.out.print("E ");
-//                    } else {
+                    if (startPos.checkEqualIndexes(depth, row, col)) {
+                        System.out.print("S ");
+                    } else if (goalPos.checkEqualIndexes(depth, row, col)) {
+                        System.out.print("E ");
+                    } else {
                         System.out.print(this.maze3dTable[depth][row][col] + " ");
-//                    }
+                    }
                 }
                 System.out.println();
             }

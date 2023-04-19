@@ -3,7 +3,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class SimpleMazeGenerator extends AMazeGenerator {
     public Maze generate(int nRows, int nColumns) {
-        final int NUMBER_OF_TRACKS = 3;
+        final int NUMBER_OF_TRACKS = 10;
         Position startPos = new Position(0, 0);
         Position goalPos = new Position(nRows - 1, nColumns - 1);
         Maze maze = new Maze(nRows, nColumns, startPos, goalPos);

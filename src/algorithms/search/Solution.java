@@ -25,6 +25,7 @@ public class Solution {
 
     public AState removeLast()
     {
+        if(sol.size() -1 < 0){return null;}
         return sol.remove(sol.size() - 1);
     }
 

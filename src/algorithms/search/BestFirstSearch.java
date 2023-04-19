@@ -12,6 +12,10 @@ public class BestFirstSearch extends BreadthFirstSearch{
 
 
     @Override
+    /**
+     * this function overides the inQueue of BFS and in this function we add a cost by the distance of the Astates,
+     * if the distance is 1 so the are near each other otherwise they are obliquely.
+     */
     protected void inQueue(AState aState, AState parent){
         if(parent == null){
             queue.add(aState);

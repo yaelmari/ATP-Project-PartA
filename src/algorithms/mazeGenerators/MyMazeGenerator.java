@@ -15,6 +15,10 @@ public class MyMazeGenerator extends AMazeGenerator{
         this.maze = new Maze(nRows, nColumns, startPos, goalPos);
         int nRowsVisitedArr = nRows / 2, nColsVisitedArr = nColumns / 2;
 
+        if(nRows == 0 || nColumns == 0){
+            return null;
+        }
+
         resetDFSmaze();
         if(nRows % 2  == 1){
             nRowsVisitedArr++;
@@ -65,6 +69,7 @@ public class MyMazeGenerator extends AMazeGenerator{
         List<Position> unvisitedNeighbors, openP = new ArrayList<>();
         int moveInRow, moveInCol, neighborIndex;
         Dictionary<Position, int[]> movesDict = new Hashtable<>();
+
         visitedCells[0][0] = 1;
         last = startP;
 

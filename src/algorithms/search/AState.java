@@ -51,8 +51,11 @@ public abstract class AState implements Comparable<AState> {
     }
 
     @Override
+    /**
+     * this function is used to set the order of the AStates. it compares their cost
+     */
     public int compareTo(AState other){
-        if(this.getCost() <= other.getCost()){return 1;}
+        if(this.getCost() >= other.getCost()){return 1;}
         else {return -1;}
 
 //        return Integer.compare(this.getCost(), other.getCost());

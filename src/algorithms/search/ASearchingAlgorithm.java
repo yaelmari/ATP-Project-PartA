@@ -7,6 +7,11 @@ public abstract class ASearchingAlgorithm  implements ISearchingAlgorithm{
     protected int numberOfNodesEvaluated = 0;
 
 
+    /**
+     * this function is used to reset all the data in the visited array which means it sets the parent
+     * as null and the cost as 0
+     * @return int for the number of Astate that their parent is not null.
+     */
     protected int resetVisited(){
 //        System.out.println("\n\nbefore: " + visited.size());
         AState aState;

@@ -15,23 +15,24 @@ public class Maze3D {
         this.nColumns = nColumns;
         this.startPos = new Position3D(0, 0, 0);
         this.goalPos = new Position3D(0, nRows - 1, nColumns - 1);
-        maze3dTable = new int[][][] {
-                {
-                        {0, 0, 1, 0, 1},
-                        {0, 1, 1, 1, 0},
-                        {0, 1, 1, 0, 0}
-                },
-                {
-                        {1, 1, 1, 0, 1},
-                        {1, 0, 0, 1, 0},
-                        {0, 0, 1, 0, 1}
-                },
-                {
-                        {1, 1, 1, 0, 1},
-                        {1, 1, 0, 0, 0},
-                        {1, 1, 1, 0, 1}
-                }
-        };
+        maze3dTable = new int[nDepth][nRows][nColumns];
+//        maze3dTable = new int[][][] {
+//                {
+//                        {0, 0, 1, 0, 1},
+//                        {0, 1, 1, 1, 0},
+//                        {0, 1, 1, 0, 0}
+//                },
+//                {
+//                        {1, 1, 1, 0, 1},
+//                        {1, 0, 0, 1, 0},
+//                        {0, 0, 1, 0, 1}
+//                },
+//                {
+//                        {1, 1, 1, 0, 1},
+//                        {1, 1, 0, 0, 0},
+//                        {1, 1, 1, 0, 1}
+//                }
+//        };
 
     }
     public int[][][] getMap(){
@@ -49,18 +50,22 @@ public class Maze3D {
         for (int depth = 0; depth < this.maze3dTable.length; depth++) {
             for (int row = 0; row < this.maze3dTable[0].length; row++){
                 for (int col = 0; col < this.maze3dTable[0][0].length; col++){
-                    if (startPos.checkEqualIndexes(depth, row, col)) {
-                        System.out.print("S ");
-                    } else if (goalPos.checkEqualIndexes(depth, row, col)) {
-                        System.out.print("E ");
-                    } else {
+//                    if (startPos.checkEqualIndexes(depth, row, col)) {
+//                        System.out.print("S ");
+//                    } else if (goalPos.checkEqualIndexes(depth, row, col)) {
+//                        System.out.print("E ");
+//                    } else {
                         System.out.print(this.maze3dTable[depth][row][col] + " ");
-                    }
+//                    }
                 }
                 System.out.println();
             }
             System.out.println();
         }
+    }
+
+    public int getValue(int dep, int row, int col){
+        return this.getMap()[dep][row][col];
     }
 
     public Position3D getStartPos() {

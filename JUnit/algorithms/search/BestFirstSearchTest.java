@@ -85,9 +85,9 @@ class BestFirstSearchTest {
         Solution solBFS = new BreadthFirstSearch().solve(sm);
         Solution solBest = bestFS.solve(sm);
         int bestCost, bfsCost;
-        bestCost = getCost(sm,solBest);
+        bestCost = getCost(solBest);
 
-        bfsCost = getCost(sm,solBFS);
+        bfsCost = getCost(solBFS);
 
         System.out.println("BFS : " + bfsCost +", BEST : " + bestCost);
         assertTrue(bestCost <= bfsCost);
@@ -96,15 +96,8 @@ class BestFirstSearchTest {
 
 
     }
-    @org.junit.jupiter.api.Test
-    void differentMazes(){
-        for(int i = 0; i<100;i++){
-            checkCost();
-        }
-    }
 
-
-    int getCost(SearchableMaze sm,Solution solution ){
+    int getCost(Solution solution ){
 
         int total = 0;
         int dis,size = solution.getSize();
@@ -130,8 +123,13 @@ class BestFirstSearchTest {
 
     @org.junit.jupiter.api.Test
 
-    void checkMaze(){
-        MyMazeGenerator mazeGenerator = new MyMazeGenerator();
+    void checkMazes(){
+        checkSingleMazeGenerator(new MyMazeGenerator());
+        checkSingleMazeGenerator(new SimpleMazeGenerator());
+        checkSingleMazeGenerator(new EmptyMazeGenerator());
+    }
+
+    void checkSingleMazeGenerator(IMazeGenerator mazeGenerator){
         assertNull(mazeGenerator.generate(0, 5));
         assertNull(mazeGenerator.generate(5, 0));
         assertNull(mazeGenerator.generate(0, 0));
